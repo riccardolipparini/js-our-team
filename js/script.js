@@ -41,19 +41,21 @@ const teamMembers = [
     }
 
 ];
-console.log(teamMembers);
+
+const button = document.getElementById("addMemberButton");
 
 teamMembers.forEach((result) => {
     // Creo card
     const card = document.createElement('div');
-    card.classList = 'team-card';
+    card.classList.add('team-card');
+    console.log(result.nome);
   
     // contenuto card
     const content = `
     <div class="card-image">
     <img
-      src="img/wayne-barnett-founder-ceo.jpg"
-      alt="Wayne Barnett"
+      src=${result.immagine}
+      alt=""
     />
   </div>
   <div class="card-text">
@@ -63,7 +65,23 @@ teamMembers.forEach((result) => {
     `;
   
     // stampa
-    stamp.innerHTML += content;
+    card.innerHTML = content;
+    stamp.appendChild (card);
+
+    button.addEventListener("click",
+  function(){
+    
+  }
+  )
   })
+
+  
+
+  
+
+  function saveInput(write) {
+    var input = document.getElementById(write).value;
+    alert(input);
+}
 
 
