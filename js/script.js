@@ -44,6 +44,13 @@ const teamMembers = [
 
 const button = document.getElementById("addMemberButton");
 
+const nomeInput = document.getElementById("name");
+const ruoloInput = document.getElementById("role");
+const immagineInput = document.getElementById("image");
+
+const aggiungi = document.getElementById("addMemberButton");
+
+
 teamMembers.forEach((result) => {
     // Creo card
     const card = document.createElement('div');
@@ -68,20 +75,50 @@ teamMembers.forEach((result) => {
     card.innerHTML = content;
     stamp.appendChild (card);
 
-    button.addEventListener("click",
-  function(){
-    
-  }
-  )
   })
 
   
+  aggiungi.addEventListener("click",function(){
 
+    aggiungiMembroNomeImmagineRuolo(nomeInput.value,immagineInput.value,ruoloInput.value)
+
+})
+
+
+function aggiungiMembroNomeImmagineRuolo(nomeMembroToAdd,immagineToAdd,ruoloToAdd){
+    
+
+    let newMembers = {
+        "nome" : nomeMembroToAdd,
+        "immagine" : immagineToAdd,
+        "ruolo" : ruoloToAdd
+    }
+    teamMembers.push(newMembers)
+    let NewobjectMember = teamMembers[teamMembers.length - 1];
+    let nomeMembro = NewobjectMember.nome;
+    let ruoloMembro = NewobjectMember.ruolo;
+    let immagineMembro = NewobjectMember.immagine
+    
+    // creo stringa inner dove scriverò l html da inserire all interno del mio team container
+    let innerMembers = ` 
+    <div class="team-card">
+        <div class="card-image">
+        <img
+            src="${immagineMembro}" onerror="this.src='https://www.alacbrindisi.it/wp-content/uploads/2019/10/icona-dell-utente-di-vettore-7337510.jpg';" 
+            alt="${nomeMembro}"
+        />
+        </div>
+        <div class="card-text">
+        <h3>${nomeMembro}</h3>
+        <p>${ruoloMembro}</p>
+        </div>
+    </div>`
+    // richiamo la variabile dove vorrò inserire questo html 
+    stamp.innerHTML += innerMembers;
+}
   
 
-  function saveInput(write) {
-    var input = document.getElementById(write).value;
-    alert(input);
-}
+ 
+  
 
 
